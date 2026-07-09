@@ -44,6 +44,9 @@ validate.py   →  run data-quality checks; write a markdown QA report
    │            (schema / null / date-continuity / range / duplicate)
    ▼
  load.py      →  upsert validated rows into DuckDB (data/processed/)
+   │
+   ▼
+visualize.py  →  read the DB back out, render an HTML chart dashboard
 ```
 
 Each stage is a separate, independently testable module. Transform is a pure
@@ -74,6 +77,18 @@ python -m src            # runs extract → transform → validate → load
 
 The run prints a summary: rows processed, per-series QA pass/fail, and elapsed
 time. QA reports are written to `qa_reports/`.
+
+## Visualizing the data
+
+After a pipeline run has loaded data, generate an HTML dashboard of the loaded
+series (a line chart per series with row counts and latest values):
+
+```bash
+python -m src.visualize     # writes qa_reports/dashboard_<timestamp>.html
+```
+
+Open the resulting file in any browser. It is fully self-contained (charts are
+embedded), reads only from the database, and never modifies it.
 
 ## Running the tests
 

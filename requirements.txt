@@ -3,6 +3,7 @@ requests>=2.31.0          # FRED API HTTP calls
 pandas>=2.1.0             # transform + validation dataframes
 duckdb>=0.10.0            # local analytical warehouse (load target)
 python-dotenv>=1.0.0      # load FRED_API_KEY from .env
+matplotlib>=3.8.0         # charts for the HTML data dashboard
 
 # Testing
 pytest>=8.0.0             # unit tests for transform + validate
